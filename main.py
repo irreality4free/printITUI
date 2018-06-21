@@ -7,7 +7,7 @@ from serial_test import serial_ports
 import threading
 from PyQt5.QtCore import QTimer, QRunnable, QThreadPool
 
-SCALE = [3200,1600,1600,1600]
+SCALE = [3200,3200,3200,3200]
 
 
 
@@ -54,6 +54,8 @@ class MyWin(QtWidgets.QMainWindow):
         self.BUNK1_STEP ='3'
         self.BUNK2_STEP ='4'
 
+        self.flush = True
+
         self.answ_msg=''
 
 
@@ -66,6 +68,7 @@ class MyWin(QtWidgets.QMainWindow):
 
         self.ui.BUNKER1_checkBox.stateChanged.connect(self.BUNK1)
         self.ui.BUNKER2_checkBox.stateChanged.connect(self.BUNK2)
+        self.ui.FLUSH_checkBox.stateChanged.connect(self.FLUSH)
 
         self.clInfoTimer = QTimer()
         self.clInfoTimer.timeout.connect(self.InfoClear)
@@ -85,8 +88,9 @@ class MyWin(QtWidgets.QMainWindow):
         self.clInfoTimer.start(5000)
 
     def DebugUI(self,msg):
-        self.ui.textBrowser.setText(self.ui.textBrowser.toPlainText() + msg + '\n')
-        self.StartSelfCl()
+        self.ui.textBrowser.setText(msg +  '\n' +self.ui.textBrowser.toPlainText())
+        if self.flush:
+            self.StartSelfCl()
 
 
     def Refresh(self):
@@ -99,20 +103,26 @@ class MyWin(QtWidgets.QMainWindow):
             self.ui.PORTlistWidget.addItem(key)
 
     def Connect(self):
-        if (len(self.ui.RATElistWidget.selectedItems()) > 0):
-            port = self.ui.PORTlistWidget.selectedItems()[0].text()
-            rate = self.ui.RATElistWidget.selectedItems()[0].text()
-            try:
+        if (len(self.ui.PORTlistWidget.selectedItems()) > 0):
+            if (len(self.ui.RATElistWidget.selectedItems()) > 0):
+                port = self.ui.PORTlistWidget.selectedItems()[0].text()
+                rate = self.ui.RATElistWidget.selectedItems()[0].text()
+                try:
 
-                self.ser = serial.Serial(port, rate)
-                print('connected')
+                    self.ser = serial.Serial(port, rate)
+                    self.DebugUI('connected')
 
-                # self.SerialRead()
-                # self.threadpool.start(self.SerialRead)
-                self.serTimer.start(100)
-            except Exception as e:
-                print(e)
-                print('connection exeption')
+                    # self.SerialRead()
+                    # self.threadpool.start(self.SerialRead)
+                    self.serTimer.start(100)
+                except Exception as e:
+                    print(e)
+                    print('connection exeption')
+
+            else:
+                self.DebugUI('choose RATE first')
+        else:
+            self.DebugUI('choose PORT first')
 
     # @threaded
     def SerialRead(self):
@@ -121,7 +131,7 @@ class MyWin(QtWidgets.QMainWindow):
                 msg = msg.replace("b'", '')
                 msg = msg.replace("\\r\\n", '')
                 msg = msg.replace("'", '')
-                print(msg)
+                # print(msg)
                 self.answ_msg = msg
                 # self.ui.textBrowser.setText(self.ui.textBrowser.toPlainText()+msg+'\n')
                 self.DebugUI(msg)
@@ -148,11 +158,11 @@ class MyWin(QtWidgets.QMainWindow):
     def RB_HOME(self):
         self.ser.write('c01:1:1000:30\n'.encode('utf-8'))
     def RF_HOME(self):
-        self.ser.write('com:9\n'.encode('utf-8'))
+        self.ser.write('c01:1:-1000:30\n'.encode('utf-8'))
     def LT_HOME(self):
-        self.ser.write('com:1\n'.encode('utf-8'))
+        self.ser.write('c01:2:1000:30\n'.encode('utf-8'))
     def LB_HOME(self):
-        self.ser.write('com:1\n'.encode('utf-8'))
+        self.ser.write('c01:2:-1000:30\n'.encode('utf-8'))
 
     def BUNK1(self):
         if self.ui.BUNKER1_checkBox.isChecked():
@@ -166,6 +176,11 @@ class MyWin(QtWidgets.QMainWindow):
         else:
             self.ser.write('com:8\n'.encode('utf-8'))
 
+    def FLUSH(self):
+        if self.ui.FLUSH_checkBox.isChecked():
+            self.flush = True
+        else:
+            self.flush = False
 
 
     def b001(self):
