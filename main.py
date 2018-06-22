@@ -6,8 +6,12 @@ import serial
 from serial_test import serial_ports
 import threading
 from PyQt5.QtCore import QTimer, QRunnable, QThreadPool
+import sys
+from PyQt5.QtWidgets import (QMainWindow, QTextEdit,
+    QAction, QFileDialog, QApplication)
+from PyQt5.QtGui import QIcon
 
-SCALE = [3200,3200,3200,3200]
+SCALE = [3200,3200,3200,3200]##rak lift bunk1 bunk2
 
 
 
@@ -22,6 +26,11 @@ def threaded(fn):
 class MyWin(QtWidgets.QMainWindow):
 
     def __init__(self, parent=None):
+
+
+
+
+
         QtWidgets.QWidget.__init__(self, parent)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
@@ -58,6 +67,14 @@ class MyWin(QtWidgets.QMainWindow):
 
         self.answ_msg=''
 
+        self.lift_down = 0.01 * SCALE[1]*5
+        self.time_from_start = 0
+
+        self.bunk_doze = 10 * SCALE[0]
+        self.current_layer = 0
+
+
+
 
 
         self.ui.b0001radioButton.clicked.connect(self.b001)
@@ -66,8 +83,8 @@ class MyWin(QtWidgets.QMainWindow):
         self.ui.b10radioButton.clicked.connect(self.b10)
 
 
-        self.ui.BUNKER1_checkBox.stateChanged.connect(self.BUNK1)
-        self.ui.BUNKER2_checkBox.stateChanged.connect(self.BUNK2)
+        self.ui.BUNKER1_pushButton.clicked.connect(self.BUNK1)
+        self.ui.BUNKER2_pushButton.clicked.connect(self.BUNK2)
         self.ui.FLUSH_checkBox.stateChanged.connect(self.FLUSH)
 
         self.clInfoTimer = QTimer()
@@ -79,6 +96,37 @@ class MyWin(QtWidgets.QMainWindow):
 
         # self.threadpool = QThreadPool()
         # print("Multithreading with maximum %d threads" % self.threadpool.maxThreadCount())
+
+        # self.textEdit = QTextEdit()
+        # self.setCentralWidget(self.textEdit)
+        # self.statusBar()
+
+        self.ui.openFile = QAction(QIcon('open.png'), 'Open', self)
+        self.ui.openFile.setShortcut('Ctrl+O')
+        self.ui.openFile.setStatusTip('Open new File')
+        self.ui.openFile.triggered.connect(self.showDialog)
+
+        self.ui.menubar = self.menuBar()
+        self.ui.fileMenu = self.ui.menubar.addMenu('&File')
+        self.ui.fileMenu.addAction(self.ui.openFile)
+
+        # self.setGeometry(300, 300, 350, 300)
+        # self.setWindowTitle('File dialog')
+        # self.show()
+
+    def showDialog(self):
+        try:
+            fname = QFileDialog.getOpenFileName(self, 'Open file', '/home')[0]
+
+
+        # f =
+
+            with open(fname, 'r') as f:
+                data = f.read()
+                self.textEdit.setText(data)
+
+        except Exception as e:
+            print(e)
 
     def InfoClear(self):
         self.ui.textBrowser.clear()
@@ -165,13 +213,13 @@ class MyWin(QtWidgets.QMainWindow):
         self.ser.write('c01:2:-1000:30\n'.encode('utf-8'))
 
     def BUNK1(self):
-        if self.ui.BUNKER1_checkBox.isChecked():
+        if self.ui.BUNKER1_pushButton.isChecked():
             self.ser.write('com:1\n'.encode('utf-8'))
         else:
             self.ser.write('com:2\n'.encode('utf-8'))
 
     def BUNK2(self):
-        if self.ui.BUNKER1_checkBox.isChecked():
+        if self.ui.BUNKER2_pushButton.isChecked():
             self.ser.write('com:7\n'.encode('utf-8'))
         else:
             self.ser.write('com:8\n'.encode('utf-8'))
@@ -195,6 +243,30 @@ class MyWin(QtWidgets.QMainWindow):
     def b10(self):
         self.move_step = 10.0
         print(self.move_step)
+
+    def LiftDown(self):
+        self.ser.write('c02:1:{}\n'.format(int(self.move_step * float(SCALE[0]))).encode('utf-8'))
+
+    def LoadScan(self,current_layer):
+        pass
+
+    def LoadMaterial(self):
+        self.ser.write('c02:3:{}\n'.format(int(self.bunk_doze)).encode('utf-8'))
+
+    def StartScan(self):
+        pass
+
+    def RUN(self):
+        self.LiftDown()
+        self.LoadScan(self.current_layer)
+        self.LoadMaterial()
+        self.RB_HOME()
+        self.StartScan()
+
+
+
+
+
 
 
 
