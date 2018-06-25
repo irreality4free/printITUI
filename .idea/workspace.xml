@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bb5cdf04-e2c7-4640-8c7c-9c8b3d0e95b2" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
       <change beforePath="$PROJECT_DIR$/metal3DUI.py" afterPath="$PROJECT_DIR$/metal3DUI.py" />
       <change beforePath="$PROJECT_DIR$/metal3DUI.ui" afterPath="$PROJECT_DIR$/metal3DUI.ui" />
@@ -14,14 +15,40 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="129" column="0" lean-forward="true" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
+            <state relative-caret-position="188">
+              <caret line="244" column="33" lean-forward="false" selection-start-line="244" selection-start-column="33" selection-end-line="244" selection-end-column="33" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
+                <element signature="e#2826#3095#0" expanded="false" />
+                <element signature="e#3130#3230#0" expanded="false" />
+                <element signature="e#3267#3295#0" expanded="false" />
+                <element signature="e#3332#3555#0" expanded="false" />
+                <element signature="e#3589#3732#0" expanded="false" />
+                <element signature="e#3765#4500#0" expanded="false" />
+                <element signature="e#4536#4973#0" expanded="false" />
+                <element signature="e#5009#5129#0" expanded="false" />
+                <element signature="e#5157#5217#0" expanded="false" />
+                <element signature="e#5247#5310#0" expanded="false" />
+                <element signature="e#5343#5395#0" expanded="false" />
+                <element signature="e#5428#5484#0" expanded="false" />
+                <element signature="e#5517#5571#0" expanded="false" />
+                <element signature="e#5604#5659#0" expanded="false" />
+                <element signature="e#5715#5903#0" expanded="false" />
+                <element signature="e#6208#6321#0" expanded="false" />
+                <element signature="e#6351#6402#0" expanded="false" />
+                <element signature="e#6431#6481#0" expanded="false" />
+                <element signature="e#6509#6559#0" expanded="false" />
+                <element signature="e#6588#6639#0" expanded="false" />
+                <element signature="e#6673#6734#0" expanded="false" />
+                <element signature="e#6785#6844#0" expanded="false" />
+                <element signature="e#6882#6924#0" expanded="false" />
+                <element signature="e#6959#6963#0" expanded="false" />
+                <element signature="e#7013#7077#0" expanded="false" />
+                <element signature="e#7106#7359#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -30,7 +57,7 @@
       <file leaf-file-name="openfile.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/openfile.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
+            <state relative-caret-position="205">
               <caret line="33" column="32" lean-forward="false" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
               <folding>
                 <element signature="e#44#54#0" expanded="true" />
@@ -54,11 +81,10 @@
       <file leaf-file-name="metal3DUI.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/metal3DUI.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="89">
-              <caret line="11" column="34" lean-forward="true" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
+            <state relative-caret-position="209">
+              <caret line="19" column="49" lean-forward="false" selection-start-line="19" selection-start-column="49" selection-end-line="19" selection-end-column="49" />
               <folding>
-                <marker date="1529681737165" expanded="true" signature="270:30591" ph="..." />
-                <marker date="1529681737165" expanded="true" signature="30588:30591" ph="..." />
+                <marker date="1529928498835" expanded="true" signature="35468:35471" ph="..." />
               </folding>
             </state>
           </provider>
@@ -102,8 +128,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="67" />
-    <option name="y" value="64" />
+    <option name="x" value="180" />
+    <option name="y" value="56" />
     <option name="width" value="1335" />
     <option name="height" value="835" />
   </component>
@@ -124,6 +150,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -135,13 +162,15 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
     </key>
@@ -177,6 +206,24 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
+    <configuration name="metal3DUI" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="METAL3D" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/metal3DUI.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+    </configuration>
     <configuration name="openfile" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -195,14 +242,16 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <list size="2">
+    <list size="3">
       <item index="0" class="java.lang.String" itemvalue="Python.main" />
       <item index="1" class="java.lang.String" itemvalue="Python.openfile" />
+      <item index="2" class="java.lang.String" itemvalue="Python.metal3DUI" />
     </list>
     <recent_temporary>
-      <list size="2">
+      <list size="3">
         <item index="0" class="java.lang.String" itemvalue="Python.main" />
-        <item index="1" class="java.lang.String" itemvalue="Python.openfile" />
+        <item index="1" class="java.lang.String" itemvalue="Python.metal3DUI" />
+        <item index="2" class="java.lang.String" itemvalue="Python.openfile" />
       </list>
     </recent_temporary>
   </component>
@@ -223,27 +272,27 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="67" y="64" width="1335" height="835" extended-state="0" />
+    <frame x="180" y="56" width="1335" height="835" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13611756" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13766435" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="R Packages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="R Graphics" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23243243" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="R Packages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="R Graphics" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23243243" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -255,11 +304,69 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/metal3DUIUI.py">
+    <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#2826#3095#0" expanded="false" />
+            <element signature="e#3130#3230#0" expanded="false" />
+            <element signature="e#3267#3295#0" expanded="false" />
+            <element signature="e#3332#3555#0" expanded="false" />
+            <element signature="e#3589#3732#0" expanded="false" />
+            <element signature="e#3765#4500#0" expanded="false" />
+            <element signature="e#4536#4973#0" expanded="false" />
+            <element signature="e#5009#5129#0" expanded="false" />
+            <element signature="e#5157#5217#0" expanded="false" />
+            <element signature="e#5247#5310#0" expanded="false" />
+            <element signature="e#5343#5395#0" expanded="false" />
+            <element signature="e#5428#5484#0" expanded="false" />
+            <element signature="e#5517#5571#0" expanded="false" />
+            <element signature="e#5604#5659#0" expanded="false" />
+            <element signature="e#5715#5903#0" expanded="false" />
+            <element signature="e#6208#6321#0" expanded="false" />
+            <element signature="e#6351#6402#0" expanded="false" />
+            <element signature="e#6431#6481#0" expanded="false" />
+            <element signature="e#6509#6559#0" expanded="false" />
+            <element signature="e#6588#6639#0" expanded="false" />
+            <element signature="e#6673#6734#0" expanded="false" />
+            <element signature="e#6785#6844#0" expanded="false" />
+            <element signature="e#6882#6924#0" expanded="false" />
+            <element signature="e#6959#6963#0" expanded="false" />
+            <element signature="e#7013#7077#0" expanded="false" />
+            <element signature="e#7106#7359#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/openfile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="33" column="32" lean-forward="false" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
+          <folding>
+            <element signature="e#44#54#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Serial.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/metal3DUI.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="34" lean-forward="true" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
+          <folding>
+            <marker date="1529928498835" expanded="true" signature="35468:35471" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -271,17 +378,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/metal3DUI.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="89">
-          <caret line="11" column="34" lean-forward="true" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
-          <folding>
-            <marker date="1529681737165" expanded="true" signature="270:30591" ph="..." />
-            <marker date="1529681737165" expanded="true" signature="30588:30591" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/metal3DUIUI.py" />
     <entry file="file://$PROJECT_DIR$/Serial.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -292,9 +389,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/serial_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="8" lean-forward="false" selection-start-line="0" selection-start-column="8" selection-end-line="0" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/openfile.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
+        <state relative-caret-position="205">
           <caret line="33" column="32" lean-forward="false" selection-start-line="33" selection-start-column="32" selection-end-line="33" selection-end-column="32" />
           <folding>
             <element signature="e#44#54#0" expanded="true" />
@@ -302,12 +407,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/metal3DUI.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="19" column="49" lean-forward="false" selection-start-line="19" selection-start-column="49" selection-end-line="19" selection-end-column="49" />
+          <folding>
+            <marker date="1529928498835" expanded="true" signature="35468:35471" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="129" column="0" lean-forward="true" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
+        <state relative-caret-position="188">
+          <caret line="244" column="33" lean-forward="false" selection-start-line="244" selection-start-column="33" selection-end-line="244" selection-end-column="33" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
+            <element signature="e#2826#3095#0" expanded="false" />
+            <element signature="e#3130#3230#0" expanded="false" />
+            <element signature="e#3267#3295#0" expanded="false" />
+            <element signature="e#3332#3555#0" expanded="false" />
+            <element signature="e#3589#3732#0" expanded="false" />
+            <element signature="e#3765#4500#0" expanded="false" />
+            <element signature="e#4536#4973#0" expanded="false" />
+            <element signature="e#5009#5129#0" expanded="false" />
+            <element signature="e#5157#5217#0" expanded="false" />
+            <element signature="e#5247#5310#0" expanded="false" />
+            <element signature="e#5343#5395#0" expanded="false" />
+            <element signature="e#5428#5484#0" expanded="false" />
+            <element signature="e#5517#5571#0" expanded="false" />
+            <element signature="e#5604#5659#0" expanded="false" />
+            <element signature="e#5715#5903#0" expanded="false" />
+            <element signature="e#6208#6321#0" expanded="false" />
+            <element signature="e#6351#6402#0" expanded="false" />
+            <element signature="e#6431#6481#0" expanded="false" />
+            <element signature="e#6509#6559#0" expanded="false" />
+            <element signature="e#6588#6639#0" expanded="false" />
+            <element signature="e#6673#6734#0" expanded="false" />
+            <element signature="e#6785#6844#0" expanded="false" />
+            <element signature="e#6882#6924#0" expanded="false" />
+            <element signature="e#6959#6963#0" expanded="false" />
+            <element signature="e#7013#7077#0" expanded="false" />
+            <element signature="e#7106#7359#0" expanded="false" />
           </folding>
         </state>
       </provider>

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1123</width>
-    <height>760</height>
+    <height>736</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,7 +27,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab_3">
      <attribute name="title">
@@ -47,7 +47,7 @@
         <widget class="QListWidget" name="PORTlistWidget"/>
        </item>
        <item>
-        <widget class="QComboBox" name="comboBox">
+        <widget class="QComboBox" name="RATE_comboBox">
          <item>
           <property name="text">
            <string>9600</string>
@@ -85,7 +85,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QTextBrowser" name="textBrowser_2">
+        <widget class="QTextBrowser" name="CONN_textBrowser">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
            <horstretch>0</horstretch>
@@ -215,7 +215,14 @@
           </widget>
          </item>
          <item>
-          <widget class="QLCDNumber" name="lcdNumber_2"/>
+          <widget class="QLabel" name="CUR_ST_label">
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
@@ -229,7 +236,14 @@
           </widget>
          </item>
          <item>
-          <widget class="QLCDNumber" name="lcdNumber_3"/>
+          <widget class="QLabel" name="ALL_LAYERS_label">
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
@@ -243,7 +257,14 @@
           </widget>
          </item>
          <item>
-          <widget class="QLCDNumber" name="lcdNumber_4"/>
+          <widget class="QLabel" name="CURRENT_LAYER_label">
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
@@ -257,7 +278,14 @@
           </widget>
          </item>
          <item>
-          <widget class="QLCDNumber" name="lcdNumber"/>
+          <widget class="QLabel" name="RAK_POS_label">
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
@@ -291,12 +319,12 @@
           </widget>
          </item>
          <item>
-          <widget class="QLCDNumber" name="lcdNumber_5">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
+          <widget class="QLabel" name="TIME_label">
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
            </property>
           </widget>
          </item>
@@ -312,7 +340,14 @@
           </widget>
          </item>
          <item>
-          <widget class="QLCDNumber" name="LAYER_lcdNumber"/>
+          <widget class="QLabel" name="LIFT_POS_label">
+           <property name="text">
+            <string>0</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
@@ -372,64 +407,7 @@
        </item>
        <item>
         <layout class="QGridLayout" name="gridLayout_5">
-         <item row="1" column="3">
-          <widget class="QPushButton" name="RIGHT_pushButton">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string>&gt;</string>
-           </property>
-           <property name="autoRepeat">
-            <bool>true</bool>
-           </property>
-           <property name="autoRepeatDelay">
-            <number>500</number>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="2">
-          <widget class="QPushButton" name="UP_pushButton">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string>^</string>
-           </property>
-           <property name="autoRepeat">
-            <bool>true</bool>
-           </property>
-           <property name="autoRepeatDelay">
-            <number>500</number>
-           </property>
-          </widget>
-         </item>
          <item row="1" column="1">
-          <widget class="QPushButton" name="LEFT_pushButton">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string>&lt;</string>
-           </property>
-           <property name="autoRepeat">
-            <bool>true</bool>
-           </property>
-           <property name="autoRepeatDelay">
-            <number>500</number>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="2">
           <widget class="QPushButton" name="DOWN_pushButton">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -439,6 +417,25 @@
            </property>
            <property name="text">
             <string>v</string>
+           </property>
+           <property name="autoRepeat">
+            <bool>true</bool>
+           </property>
+           <property name="autoRepeatDelay">
+            <number>500</number>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QPushButton" name="UP_pushButton">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>^</string>
            </property>
            <property name="autoRepeat">
             <bool>true</bool>

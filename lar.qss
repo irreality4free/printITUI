@@ -1,0 +1,112 @@
+QTextEdit, QListView {
+    background-color: white;
+    background-image: url(draft.png);
+    background-attachment: fixed;
+}
+
+QMainWindow, QTabWidget, QWidget {
+    background-color: #666666;
+}
+
+QLabel{
+	font: 15px large "Ubuntu";
+	color: white;
+}
+
+QPushButton, QRadioButton, QComboBox {
+	/*background-image: url("img/blue.png");*/
+	border-image: url("img/button.png") 20  20 20 42   repeat repeat;
+	background-repeat: no-repeat;
+	}
+
+QPushButton, QRadioButton, QCheckBox, QComboBox{
+	outline: none;
+	padding-left: 10px;
+	text-align: left;
+	color: white;
+	font: 20px 	bold "Ubuntu";
+	border-left:	42px;
+	border-top:		20px;
+	border-right:	20px;
+	border-bottom:	20px;
+	
+	max-height: 23px;
+	height: 23px;
+	width: 200px;
+	min-width: 100px;
+	max-width: 300px;
+	
+	margin-bottom: 2px;
+}
+
+QCheckBox{
+	padding:0;
+	border-image: url("img/radio-off.png") 20  20 20 42    stretch stretch;
+}
+
+QCheckBox::checked{
+	border-image: url("img/radio-on.png") 20  20 20 42    stretch stretch;
+}
+
+
+QPushButton::pressed, QRadioButton::pressed, QCheckBox::pressed {
+	margin-top: 2px;
+	margin-bottom: 0px;
+	color: #dddddd;
+}
+
+
+QCheckBox::indicator, QRadioButton::indicator{
+	width: 0px;
+	padding:0px;
+	margin: 0px;
+	background:rgba(0,0,0,0);
+}
+
+QRadioButton{
+	border-image: url("img/radio-off.png") 20  20 20 42    stretch stretch;
+}
+
+QRadioButton::checked {
+	border-image: url("img/radio-on.png") 20  20 20 42    stretch stretch;
+}
+
+QComboBox::down-arrow, QComboBox::drop-down {
+	width: 0px;
+	padding:0px;
+	margin: 0px;
+	background:rgba(0,0,0,0);
+	border: none;
+}
+
+QSlider::hanlde {
+    background-color: rgba(255,0,0,0.1);
+	border: 1px Solid #fff;
+	min-height: 10px;
+	min-width: 10px;
+}
+
+QSlider::groove {
+    background-color: rgba(255,0,0,0.1);
+	border: 1px Solid #fff;
+	min-height: 10px;
+	min-width: 10px;
+
+}
+
+QListWidget, QTextBrowser {
+	font: 15px large "Ubuntu";
+	color: #fff;
+	padding: 10px;
+	border: 1px Solid #fff;
+	border-image: url("img/led-off.png") 20  20 20 42    stretch stretch;
+	color: white;
+	font: 15px 	bold "Ubuntu";
+	border-left:	42px;
+	border-top:		20px;
+	border-right:	20px;
+	border-bottom:	20px;
+
+}
+
+

@@ -15,6 +15,8 @@ SCALE = [3200,3200,3200,3200]##rak lift bunk1 bunk2
 
 
 
+
+
 def threaded(fn):
     def wrapper(*args, **kwargs):
         thread = threading.Thread(target=fn, args=args, kwargs=kwargs)
@@ -35,7 +37,6 @@ class MyWin(QtWidgets.QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
-        self.move_step = 0.01
 
         # Здесь прописываем событие нажатия на кнопку
         self.ui.REFRESHpushButton.clicked.connect(self.Refresh)
@@ -48,11 +49,32 @@ class MyWin(QtWidgets.QMainWindow):
 
         self.ui.UP_pushButton.clicked.connect(self.UP)
         self.ui.DOWN_pushButton.clicked.connect(self.DOWN)
-        self.ui.LEFT_pushButton.clicked.connect(self.LEFT)
-        self.ui.RIGHT_pushButton.clicked.connect(self.RIGHT)
+
+        self.ui.b0001radioButton.clicked.connect(self.b001)
+        self.ui.b001radioButton.clicked.connect(self.b01)
+        self.ui.b1radioButton.clicked.connect(self.b1)
+        self.ui.b10radioButton.clicked.connect(self.b10)
+
+        self.ui.FLUSH_checkBox.stateChanged.connect(self.FLUSH)
+
+        self.clInfoTimer = QTimer()
+        self.clInfoTimer.timeout.connect(self.InfoClear)
+
+        self.serTimer = QTimer()
+        # self.serTimer.timeout.connect(self.UpdateInfo)
+        self.serTimer.timeout.connect(self.SerialRead)
+
+        self.ui.openFile = QAction(QIcon('open.png'), 'Open', self)
+        self.ui.openFile.setShortcut('Ctrl+O')
+        self.ui.openFile.setStatusTip('Open new File')
+        self.ui.OPENFILE_pushButton.clicked.connect(self.showDialog)
+
+        self.ui.menubar = self.menuBar()
+        self.ui.fileMenu = self.ui.menubar.addMenu('&File')
+        self.ui.fileMenu.addAction(self.ui.openFile)
 
 
-
+        self.move_step = 0.01
         self.RAK_SENSE_BACK = '30'
         self.RAK_SENSE_FRONT = '31'
         self.LIFT_SENSE_BOT = '32'
@@ -72,47 +94,7 @@ class MyWin(QtWidgets.QMainWindow):
 
         self.bunk_doze = 10 * SCALE[0]
         self.current_layer = 0
-
-
-
-
-
-        self.ui.b0001radioButton.clicked.connect(self.b001)
-        self.ui.b001radioButton.clicked.connect(self.b01)
-        self.ui.b1radioButton.clicked.connect(self.b1)
-        self.ui.b10radioButton.clicked.connect(self.b10)
-
-
-        self.ui.BUNKER1_pushButton.clicked.connect(self.BUNK1)
-        self.ui.BUNKER2_pushButton.clicked.connect(self.BUNK2)
-        self.ui.FLUSH_checkBox.stateChanged.connect(self.FLUSH)
-
-        self.clInfoTimer = QTimer()
-        self.clInfoTimer.timeout.connect(self.InfoClear)
-
-        self.serTimer = QTimer()
-        # self.serTimer.timeout.connect(self.UpdateInfo)
-        self.serTimer.timeout.connect(self.SerialRead)
-
-        # self.threadpool = QThreadPool()
-        # print("Multithreading with maximum %d threads" % self.threadpool.maxThreadCount())
-
-        # self.textEdit = QTextEdit()
-        # self.setCentralWidget(self.textEdit)
-        # self.statusBar()
-
-        self.ui.openFile = QAction(QIcon('open.png'), 'Open', self)
-        self.ui.openFile.setShortcut('Ctrl+O')
-        self.ui.openFile.setStatusTip('Open new File')
-        self.ui.openFile.triggered.connect(self.showDialog)
-
-        self.ui.menubar = self.menuBar()
-        self.ui.fileMenu = self.ui.menubar.addMenu('&File')
-        self.ui.fileMenu.addAction(self.ui.openFile)
-
-        # self.setGeometry(300, 300, 350, 300)
-        # self.setWindowTitle('File dialog')
-        # self.show()
+        self.layer_list=[]
 
     def showDialog(self):
         try:
@@ -130,6 +112,7 @@ class MyWin(QtWidgets.QMainWindow):
 
     def InfoClear(self):
         self.ui.textBrowser.clear()
+        self.ui.CONN_textBrowser.clear()
         self.clInfoTimer.stop()
 
     def StartSelfCl(self):
@@ -137,9 +120,9 @@ class MyWin(QtWidgets.QMainWindow):
 
     def DebugUI(self,msg):
         self.ui.textBrowser.setText(msg +  '\n' +self.ui.textBrowser.toPlainText())
+        self.ui.CONN_textBrowser.setText(msg +  '\n' +self.ui.CONN_textBrowser.toPlainText())
         if self.flush:
             self.StartSelfCl()
-
 
     def Refresh(self):
 
@@ -152,27 +135,26 @@ class MyWin(QtWidgets.QMainWindow):
 
     def Connect(self):
         if (len(self.ui.PORTlistWidget.selectedItems()) > 0):
-            if (len(self.ui.RATElistWidget.selectedItems()) > 0):
-                port = self.ui.PORTlistWidget.selectedItems()[0].text()
-                rate = self.ui.RATElistWidget.selectedItems()[0].text()
-                try:
+            # if (len(self.ui.RATElistWidget.selectedItems()) > 0):
+            port = self.ui.PORTlistWidget.selectedItems()[0].text()
+            rate = int(self.ui.RATE_comboBox.currentText())
+            try:
 
-                    self.ser = serial.Serial(port, rate)
-                    self.DebugUI('connected')
+                self.ser = serial.Serial(port, rate)
+                self.DebugUI('connected')
 
-                    # self.SerialRead()
-                    # self.threadpool.start(self.SerialRead)
-                    self.serTimer.start(100)
-                except Exception as e:
-                    print(e)
-                    print('connection exeption')
+                # self.SerialRead()
+                # self.threadpool.start(self.SerialRead)
+                self.serTimer.start(100)
+            except Exception as e:
+                print(e)
+                print('connection exeption')
 
-            else:
-                self.DebugUI('choose RATE first')
+            # else:
+            #     self.DebugUI('choose RATE first')
         else:
             self.DebugUI('choose PORT first')
 
-    # @threaded
     def SerialRead(self):
         while self.ser.inWaiting():
                 msg = str(self.ser.readline())
@@ -185,7 +167,6 @@ class MyWin(QtWidgets.QMainWindow):
                 self.DebugUI(msg)
                 # msg = msg.split(':')
 
-
     def UpdateInfo(self):
         # print('check')
         if len(self.answ_msg)>0:
@@ -193,36 +174,36 @@ class MyWin(QtWidgets.QMainWindow):
             self.answ_msg = ""
 
     def UP(self):
-        self.ser.write('c02:1:{}\n'.format(int(self.move_step*float(SCALE[0]))).encode('utf-8'))
+        self.move_stepper( '1', int(self.move_step*float(SCALE[0])))
+
     def DOWN(self):
-        self.ser.write('c02:1:{}\n'.format(int(-self.move_step * float(SCALE[0]))).encode('utf-8'))
-    def LEFT(self):
-        self.ser.write('c02:2:{}\n'.format(int(self.move_step * float(SCALE[0]))).encode('utf-8'))
-    def RIGHT(self):
-        self.ser.write('c02:2:{}\n'.format(int(-self.move_step * float(SCALE[0]))).encode('utf-8'))
-
-
+        self.move_stepper( '1', int(-self.move_step * float(SCALE[0])))
 
     def RB_HOME(self):
-        self.ser.write('c01:1:1000:30\n'.encode('utf-8'))
+        self.move_stepper_sw('1','1000',self.RAK_SENSE_BACK)
+
     def RF_HOME(self):
-        self.ser.write('c01:1:-1000:30\n'.encode('utf-8'))
+        self.move_stepper_sw('1', '-1000', self.RAK_SENSE_FRONT)
+
     def LT_HOME(self):
-        self.ser.write('c01:2:1000:30\n'.encode('utf-8'))
+        self.move_stepper_sw('2', '1000', self.LIFT_SENSE_TOP)
+
     def LB_HOME(self):
-        self.ser.write('c01:2:-1000:30\n'.encode('utf-8'))
+        self.move_stepper_sw('2', '-1000', self.LIFT_SENSE_BOT)
 
-    def BUNK1(self):
-        if self.ui.BUNKER1_pushButton.isChecked():
-            self.ser.write('com:1\n'.encode('utf-8'))
-        else:
-            self.ser.write('com:2\n'.encode('utf-8'))
+    def move_stepper(self, motor_num, steps):
+        try:
+            self.ser.write('c02:{}:{}\n'.format( motor_num, steps).encode('utf-8'))
+        except AttributeError as e:
+            print(e)
+            self.DebugUI('НЕТ СОЕДИНЕНИЯ')
 
-    def BUNK2(self):
-        if self.ui.BUNKER2_pushButton.isChecked():
-            self.ser.write('com:7\n'.encode('utf-8'))
-        else:
-            self.ser.write('com:8\n'.encode('utf-8'))
+    def move_stepper_sw(self, motor_num, steps, endstop_pin):
+        try:
+            self.ser.write('c01:{}:{}:{}\n'.format(motor_num,steps,endstop_pin).encode('utf-8'))
+        except AttributeError as e:
+            print (e)
+            self.DebugUI('НЕТ СОЕДИНЕНИЯ')
 
     def FLUSH(self):
         if self.ui.FLUSH_checkBox.isChecked():
@@ -230,38 +211,50 @@ class MyWin(QtWidgets.QMainWindow):
         else:
             self.flush = False
 
-
     def b001(self):
         self.move_step = 0.01
         print(self.move_step)
+
     def b01(self):
         self.move_step = 0.1
         print(self.move_step)
+
     def b1(self):
         self.move_step = 1.0
         print(self.move_step)
+
     def b10(self):
         self.move_step = 10.0
         print(self.move_step)
 
     def LiftDown(self):
-        self.ser.write('c02:1:{}\n'.format(int(self.move_step * float(SCALE[0]))).encode('utf-8'))
+        self.move_stepper('1', int(self.move_step * float(SCALE[0])))
 
     def LoadScan(self,current_layer):
-        pass
+
+
+
+        self.ui.ALL_LAYERS_label.setText(str(len(self.layer_list)))
 
     def LoadMaterial(self):
-        self.ser.write('c02:3:{}\n'.format(int(self.bunk_doze)).encode('utf-8'))
+        self.move_stepper('3',int(self.bunk_doze))
 
     def StartScan(self):
         pass
 
+    def StartFromLayer(self,layer_num):
+        self.layer_list = self.layer_list[layer_num:]
+        self.RUN()
+
     def RUN(self):
-        self.LiftDown()
-        self.LoadScan(self.current_layer)
-        self.LoadMaterial()
-        self.RB_HOME()
-        self.StartScan()
+        for layer_num, layer in enumerate(self.layer_list):
+            self.LiftDown()
+            self.LoadScan(self.layer_list)
+            self.LoadMaterial()
+            self.RB_HOME()
+            self.StartScan()
+            self.current_layer = layer_num
+
 
 
 
@@ -271,7 +264,10 @@ class MyWin(QtWidgets.QMainWindow):
 
 
 if __name__=="__main__":
+
     app = QtWidgets.QApplication(sys.argv)
     myapp = MyWin()
+    with open("lar.qss", "r") as fh:
+        myapp.setStyleSheet(fh.read())
     myapp.show()
     sys.exit(app.exec_())
