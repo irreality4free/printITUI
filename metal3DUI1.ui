@@ -22,7 +22,7 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>1331</width>
+      <width>1361</width>
       <height>781</height>
      </rect>
     </property>
@@ -122,7 +122,7 @@
         <height>731</height>
        </rect>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_11" stretch="0,0,0">
+      <layout class="QHBoxLayout" name="horizontalLayout_11" stretch="0,0">
        <item>
         <layout class="QVBoxLayout" name="verticalLayout" stretch="0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1">
          <property name="sizeConstraint">
@@ -142,7 +142,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_5">
+          <widget class="QPushButton" name="START_pushButton">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
              <horstretch>0</horstretch>
@@ -155,7 +155,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_4">
+          <widget class="QPushButton" name="STOP_pushButton">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
              <horstretch>0</horstretch>
@@ -168,7 +168,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_6">
+          <widget class="QPushButton" name="PAUSE_pushButton">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
              <horstretch>0</horstretch>
@@ -181,7 +181,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_7">
+          <widget class="QPushButton" name="START_FR_L_pushButton">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
              <horstretch>0</horstretch>
@@ -248,7 +248,7 @@
              <item>
               <widget class="QRadioButton" name="CONT_radioButton">
                <property name="text">
-                <string>cont</string>
+                <string>&gt;&gt;&gt;</string>
                </property>
               </widget>
              </item>
@@ -299,21 +299,21 @@
           </layout>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_11">
+          <widget class="QPushButton" name="LAYER_pushButton">
            <property name="text">
             <string>СЛОЙ</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_12">
+          <widget class="QPushButton" name="RAK_HOME_pushButton">
            <property name="text">
             <string>РАКЕЛЬ</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_13">
+          <widget class="QPushButton" name="POWDER_pushButton">
            <property name="text">
             <string>ПОРОШОК</string>
            </property>
@@ -450,7 +450,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QLabel" name="TIME_label_2">
+            <widget class="QLabel" name="END_TIME_label">
              <property name="text">
               <string>0</string>
              </property>
@@ -508,42 +508,42 @@
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,1">
              <item>
-              <widget class="QPushButton" name="pushButton_10">
+              <widget class="QPushButton" name="POWDER_DOZE_pushButton">
                <property name="text">
-                <string>ПОРОШОК</string>
+                <string>ДОЗА </string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QSpinBox" name="spinBox"/>
+              <widget class="QSpinBox" name="POWDER_DOZE_spinBox"/>
              </item>
             </layout>
            </item>
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_12" stretch="1,1">
              <item>
-              <widget class="QPushButton" name="pushButton_8">
+              <widget class="QPushButton" name="SPEED_pushButton">
                <property name="text">
                 <string>СКОРОСТЬ</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QSpinBox" name="spinBox_2"/>
+              <widget class="QSpinBox" name="SPEED_spinBox"/>
              </item>
             </layout>
            </item>
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_13" stretch="1,1">
              <item>
-              <widget class="QPushButton" name="pushButton_9">
+              <widget class="QPushButton" name="POWER_pushButton">
                <property name="text">
                 <string>МОЩНОСТЬ</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QSpinBox" name="spinBox_3"/>
+              <widget class="QSpinBox" name="POWER_spinBox"/>
              </item>
             </layout>
            </item>
@@ -622,51 +622,6 @@
           </widget>
          </item>
         </layout>
-       </item>
-       <item>
-        <layout class="QVBoxLayout" name="verticalLayout_11" stretch=""/>
-       </item>
-      </layout>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="tab">
-     <attribute name="title">
-      <string>TEMP</string>
-     </attribute>
-    </widget>
-    <widget class="QWidget" name="tab_2">
-     <attribute name="title">
-      <string>СЛОИ</string>
-     </attribute>
-     <widget class="QWidget" name="verticalLayoutWidget_7">
-      <property name="geometry">
-       <rect>
-        <x>890</x>
-        <y>10</y>
-        <width>191</width>
-        <height>241</height>
-       </rect>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout_7">
-       <item>
-        <widget class="QLabel" name="label_7">
-         <property name="text">
-          <string>ПРОСМАТРИВАЕМЫЙ СЛОЙ</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLCDNumber" name="lcdNumber_6"/>
-       </item>
-       <item>
-        <widget class="QLabel" name="label_8">
-         <property name="text">
-          <string>ВСЕГО СЛОЕВ:</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLCDNumber" name="lcdNumber_7"/>
        </item>
       </layout>
      </widget>

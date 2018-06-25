@@ -10,6 +10,7 @@ import sys
 from PyQt5.QtWidgets import (QMainWindow, QTextEdit,
     QAction, QFileDialog, QApplication)
 from PyQt5.QtGui import QIcon
+import time
 
 SCALE = [3200,3200,3200,3200]##rak lift bunk1 bunk2
 
@@ -42,36 +43,44 @@ class MyWin(QtWidgets.QMainWindow):
         self.ui.REFRESHpushButton.clicked.connect(self.Refresh)
         self.ui.CONNECTpushButton.clicked.connect(self.Connect)
 
-        self.ui.RB_HOME_pushButton.clicked.connect(self.RB_HOME)
-        self.ui.RF_HOME_pushButton.clicked.connect(self.RF_HOME)
-        self.ui.LT_HOME_pushButton.clicked.connect(self.LT_HOME)
-        self.ui.LB_HOME_pushButton.clicked.connect(self.LB_HOME)
+        # self.ui.RB_HOME_pushButton.clicked.connect(self.RB_HOME)
+        # self.ui.RF_HOME_pushButton.clicked.connect(self.RF_HOME)
+        # self.ui.LT_HOME_pushButton.clicked.connect(self.LT_HOME)
+        # self.ui.LB_HOME_pushButton.clicked.connect(self.LB_HOME)
 
         self.ui.UP_pushButton.clicked.connect(self.UP)
         self.ui.DOWN_pushButton.clicked.connect(self.DOWN)
+        self.ui.START_pushButton.clicked.connect(self.RUN)
+        self.ui.STOP_pushButton.clicked.connect(self.Stop)
+        self.ui.PAUSE_pushButton.clicked.connect(self.Pause)
+        self.ui.POWDER_DOZE_pushButton.clicked.connect(self.SetDoze)
+        self.ui.SPEED_pushButton.clicked.connect(self.SetSpeed)
+        self.ui.POWER_pushButton.clicked.connect(self.SetPower)
+        self.ui.POWDER_pushButton.clicked.connect(self.LoadMaterial)
+        self.ui.RAK_HOME_pushButton.clicked.connect(self.RACKEL_BACK_HOME)
 
         self.ui.b0001radioButton.clicked.connect(self.b001)
         self.ui.b001radioButton.clicked.connect(self.b01)
         self.ui.b1radioButton.clicked.connect(self.b1)
         self.ui.b10radioButton.clicked.connect(self.b10)
+        self.ui.b10radioButton.clicked.connect(self.b10)
+
+        # check
+        self.ui.CONT_radioButton.clicked.connect(self.b01)
 
         self.ui.FLUSH_checkBox.stateChanged.connect(self.FLUSH)
 
         self.clInfoTimer = QTimer()
         self.clInfoTimer.timeout.connect(self.InfoClear)
 
+        self.TimeTimer = QTimer()
+        self.TimeTimer.timeout.connect(self.UpdateTime)
+
         self.serTimer = QTimer()
-        # self.serTimer.timeout.connect(self.UpdateInfo)
         self.serTimer.timeout.connect(self.SerialRead)
 
-        self.ui.openFile = QAction(QIcon('open.png'), 'Open', self)
-        self.ui.openFile.setShortcut('Ctrl+O')
-        self.ui.openFile.setStatusTip('Open new File')
         self.ui.OPENFILE_pushButton.clicked.connect(self.showDialog)
 
-        self.ui.menubar = self.menuBar()
-        self.ui.fileMenu = self.ui.menubar.addMenu('&File')
-        self.ui.fileMenu.addAction(self.ui.openFile)
 
 
         self.move_step = 0.01
@@ -95,7 +104,10 @@ class MyWin(QtWidgets.QMainWindow):
         self.bunk_doze = 10 * SCALE[0]
         self.current_layer = 0
         self.layer_list=[]
+        self.speed=0
+        self.power=0
 
+    # TODO
     def showDialog(self):
         try:
             fname = QFileDialog.getOpenFileName(self, 'Open file', '/home')[0]
@@ -106,6 +118,8 @@ class MyWin(QtWidgets.QMainWindow):
             with open(fname, 'r') as f:
                 data = f.read()
                 self.textEdit.setText(data)
+
+            self.ui.ALL_LAYERS_label.setText(str(len(self.layer_list)))
 
         except Exception as e:
             print(e)
@@ -135,7 +149,6 @@ class MyWin(QtWidgets.QMainWindow):
 
     def Connect(self):
         if (len(self.ui.PORTlistWidget.selectedItems()) > 0):
-            # if (len(self.ui.RATElistWidget.selectedItems()) > 0):
             port = self.ui.PORTlistWidget.selectedItems()[0].text()
             rate = int(self.ui.RATE_comboBox.currentText())
             try:
@@ -143,15 +156,12 @@ class MyWin(QtWidgets.QMainWindow):
                 self.ser = serial.Serial(port, rate)
                 self.DebugUI('connected')
 
-                # self.SerialRead()
-                # self.threadpool.start(self.SerialRead)
                 self.serTimer.start(100)
+
             except Exception as e:
                 print(e)
                 print('connection exeption')
 
-            # else:
-            #     self.DebugUI('choose RATE first')
         else:
             self.DebugUI('choose PORT first')
 
@@ -161,17 +171,20 @@ class MyWin(QtWidgets.QMainWindow):
                 msg = msg.replace("b'", '')
                 msg = msg.replace("\\r\\n", '')
                 msg = msg.replace("'", '')
-                # print(msg)
                 self.answ_msg = msg
-                # self.ui.textBrowser.setText(self.ui.textBrowser.toPlainText()+msg+'\n')
                 self.DebugUI(msg)
-                # msg = msg.split(':')
 
-    def UpdateInfo(self):
-        # print('check')
-        if len(self.answ_msg)>0:
-            self.DebugUI(self.answ_msg)
-            self.answ_msg = ""
+
+    def format_seconds_to_hhmmss(self,seconds):
+        hours = seconds // (60 * 60)
+        seconds %= (60 * 60)
+        minutes = seconds // 60
+        seconds %= 60
+        return "%02i:%02i:%02i" % (hours, minutes, seconds)
+
+    def UpdateTime(self):
+
+        self.ui.TIME_label.setText(self.format_seconds_to_hhmmss(int(time.time() - self.start_time)))
 
     def UP(self):
         self.move_stepper( '1', int(self.move_step*float(SCALE[0])))
@@ -179,12 +192,15 @@ class MyWin(QtWidgets.QMainWindow):
     def DOWN(self):
         self.move_stepper( '1', int(-self.move_step * float(SCALE[0])))
 
-    def RB_HOME(self):
+    def RACKEL_BACK_HOME(self):
+        self.DebugUI("Rakel going home...")
         self.move_stepper_sw('1','1000',self.RAK_SENSE_BACK)
+        self.DebugUI("done")
 
     def RF_HOME(self):
         self.move_stepper_sw('1', '-1000', self.RAK_SENSE_FRONT)
 
+    # lift home top/bot
     def LT_HOME(self):
         self.move_stepper_sw('2', '1000', self.LIFT_SENSE_TOP)
 
@@ -227,33 +243,70 @@ class MyWin(QtWidgets.QMainWindow):
         self.move_step = 10.0
         print(self.move_step)
 
-    def LiftDown(self):
-        self.move_stepper('1', int(self.move_step * float(SCALE[0])))
+    # TODO
+    def SetDoze(self):
+        self.bunk_doze = int(self.ui.POWDER_DOZE_spinBox.value())
+        self.DebugUI("Doze set: {}".format(self.bunk_doze))
 
+    # TODO
+    def SetSpeed(self):
+        self.speed = int(self.ui.SPEED_spinBox.value())
+        self.DebugUI("Speed set: {}".format(self.speed))
+
+    # TODO
+    def SetPower(self):
+        self.power = int(self.ui.POWER_spinBox.value())
+        self.DebugUI("Power set: {}".format(self.power))
+    # check
+    def LiftDown(self):
+        self.DebugUI("Lift going down...")
+        self.move_stepper('1', int(self.move_step * float(SCALE[0])))
+        self.DebugUI("done")
+
+    # TODO
     def LoadScan(self,current_layer):
+        self.DebugUI("Loading scan...")
 
 
 
         self.ui.ALL_LAYERS_label.setText(str(len(self.layer_list)))
+        self.DebugUI("done")
 
     def LoadMaterial(self):
+        self.DebugUI("Loading material...")
         self.move_stepper('3',int(self.bunk_doze))
+        self.DebugUI("done...")
 
+    # TODO
     def StartScan(self):
-        pass
+        self.DebugUI("Starting print layer {}".format(self.current_layer))
 
+    # check
     def StartFromLayer(self,layer_num):
         self.layer_list = self.layer_list[layer_num:]
         self.RUN()
 
+    # TODO
+    def Stop(self):
+        pass
+
+    # TODO
+    def Pause(self):
+        pass
+
+    # check
     def RUN(self):
+        self.start_time = time.time()
+        self.TimeTimer.start(1000)
         for layer_num, layer in enumerate(self.layer_list):
+            self.current_layer = layer_num
+            self.ui.CURRENT_LAYER_label.setText(str(self.current_layer))
             self.LiftDown()
             self.LoadScan(self.layer_list)
             self.LoadMaterial()
             self.RB_HOME()
             self.StartScan()
-            self.current_layer = layer_num
+
 
 
 
@@ -267,7 +320,7 @@ if __name__=="__main__":
 
     app = QtWidgets.QApplication(sys.argv)
     myapp = MyWin()
-    with open("lar.qss", "r") as fh:
-        myapp.setStyleSheet(fh.read())
+    # with open("lar.qss", "r") as fh:
+    #     myapp.setStyleSheet(fh.read())
     myapp.show()
     sys.exit(app.exec_())
