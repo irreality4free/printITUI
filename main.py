@@ -12,6 +12,8 @@ from PyQt5.QtWidgets import (QMainWindow, QTextEdit,
 from PyQt5.QtGui import QIcon
 import time
 
+from parser import *
+
 SCALE = [3200,3200,3200,3200]##rak lift bunk1 bunk2
 
 
@@ -53,9 +55,9 @@ class MyWin(QtWidgets.QMainWindow):
         self.ui.START_pushButton.clicked.connect(self.RUN)
         self.ui.STOP_pushButton.clicked.connect(self.Stop)
         self.ui.PAUSE_pushButton.clicked.connect(self.Pause)
-        self.ui.POWDER_DOZE_pushButton.clicked.connect(self.SetDoze)
-        self.ui.SPEED_pushButton.clicked.connect(self.SetSpeed)
-        self.ui.POWER_pushButton.clicked.connect(self.SetPower)
+        self.ui.POWDER_DOZE_spinBox.valueChanged.connect(self.SetDoze)
+        self.ui.SPEED_spinBox.valueChanged.connect(self.SetSpeed)
+        self.ui.POWER_spinBox.valueChanged.connect(self.SetPower)
         self.ui.POWDER_pushButton.clicked.connect(self.LoadMaterial)
         self.ui.RAK_HOME_pushButton.clicked.connect(self.RACKEL_BACK_HOME)
 
@@ -94,6 +96,8 @@ class MyWin(QtWidgets.QMainWindow):
         self.BUNK1_STEP ='3'
         self.BUNK2_STEP ='4'
 
+        self.scan_stop_flag = False
+
         self.flush = True
 
         self.answ_msg=''
@@ -107,17 +111,17 @@ class MyWin(QtWidgets.QMainWindow):
         self.speed=0
         self.power=0
 
+        self.scan_pause_flag = False
+
     # TODO
     def showDialog(self):
         try:
             fname = QFileDialog.getOpenFileName(self, 'Open file', '/home')[0]
 
 
-        # f =
-
-            with open(fname, 'r') as f:
-                data = f.read()
-                self.textEdit.setText(data)
+            self.Parcer = Parser(fname)
+            self.Parcer.get_command("meiko_main.nc")
+            self.layer_list = self.Parcer.parced_layers
 
             self.ui.ALL_LAYERS_label.setText(str(len(self.layer_list)))
 
@@ -278,8 +282,31 @@ class MyWin(QtWidgets.QMainWindow):
         self.DebugUI("done...")
 
     # TODO
+    # @threaded
     def StartScan(self):
-        self.DebugUI("Starting print layer {}".format(self.current_layer))
+        print('starting scan')
+        # self.DebugUI("Starting print layer {}".format(self.current_layer))
+        while(1):
+            while(self.scan_pause_flag):
+                print('pause')
+                time.sleep(1)
+            print('i am scaning ...')
+            time.sleep(1)
+            if self.scan_stop_flag:
+                self.scan_stop_flag = False
+                print('Scan have been stoped')
+                break
+
+    def startThreadScan(self):
+
+
+        thread = threading.Thread(target=self.StartScan)
+        thread.start()
+
+
+
+
+
 
     # check
     def StartFromLayer(self,layer_num):
@@ -288,24 +315,37 @@ class MyWin(QtWidgets.QMainWindow):
 
     # TODO
     def Stop(self):
-        pass
+        print("stoped")
+        self.scan_stop_flag = True
+        self.TimeTimer.stop()
 
     # TODO
     def Pause(self):
-        pass
+
+        if self.ui.PAUSE_pushButton.isChecked():
+            self.scan_pause_flag = True
+            print('paused')
+
+        else:
+            self.scan_pause_flag = False
+            print('unpaused')
 
     # check
     def RUN(self):
+        print('ENTER RUN')
         self.start_time = time.time()
         self.TimeTimer.start(1000)
-        for layer_num, layer in enumerate(self.layer_list):
-            self.current_layer = layer_num
-            self.ui.CURRENT_LAYER_label.setText(str(self.current_layer))
-            self.LiftDown()
-            self.LoadScan(self.layer_list)
-            self.LoadMaterial()
-            self.RB_HOME()
-            self.StartScan()
+        # for layer_num, layer in enumerate(self.layer_list):
+        # print('layer num - {}'.format(layer_num))
+        # self.current_layer = layer_num
+        self.ui.CURRENT_LAYER_label.setText(str(self.current_layer))
+        self.LiftDown()
+        self.LoadScan(self.layer_list)
+        self.LoadMaterial()
+        self.RACKEL_BACK_HOME()
+
+        self.startThreadScan()
+        # self.StartScan()
 
 
 

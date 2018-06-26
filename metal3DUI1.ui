@@ -178,6 +178,9 @@
            <property name="text">
             <string>ПАУЗА</string>
            </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
           </widget>
          </item>
          <item>
@@ -508,9 +511,9 @@
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,1">
              <item>
-              <widget class="QPushButton" name="POWDER_DOZE_pushButton">
+              <widget class="QLabel" name="label_3">
                <property name="text">
-                <string>ДОЗА </string>
+                <string>ДОЗА</string>
                </property>
               </widget>
              </item>
@@ -522,7 +525,7 @@
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_12" stretch="1,1">
              <item>
-              <widget class="QPushButton" name="SPEED_pushButton">
+              <widget class="QLabel" name="label_4">
                <property name="text">
                 <string>СКОРОСТЬ</string>
                </property>
@@ -536,9 +539,9 @@
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_13" stretch="1,1">
              <item>
-              <widget class="QPushButton" name="POWER_pushButton">
+              <widget class="QLabel" name="label_7">
                <property name="text">
-                <string>МОЩНОСТЬ</string>
+                <string>КИСЛОРОД</string>
                </property>
               </widget>
              </item>
